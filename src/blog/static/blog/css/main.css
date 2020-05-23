@@ -15,3 +15,16 @@
 .dropdown-menu .dropdown-item{
     text-align: right;
 }
+
+.bg-secondaray{
+    background-color: #666 !important;
+}
+
+.bg-light{
+    background-color: #ccc !important;
+}
+
+/*start post*/
+.post{
+    border: 1px solid #ccc;
+}
