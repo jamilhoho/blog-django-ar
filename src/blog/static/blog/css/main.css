@@ -21,10 +21,34 @@
 }
 
 .bg-light{
-    background-color: #ccc !important;
+    background-color: #eee !important;
 }
 
 /*start post*/
 .post{
     border: 1px solid #ccc;
+}
+
+/*Start Sidebar*/
+.lastest-post, .lastest-comment{
+    padding: 0 15px;
+}
+
+.lastest-post .lastest-post-item, .lastest-comment .lastest-comment-item{
+    padding: 6px;
+}
+
+.lastest-post li:first-child, .lastest-comment li:first-child{
+    border-top: 0;
+}
+
+.lastest-post li:last-child, .lastest-comment li:last-child{
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+/*Start comment*/
+.comment{
+    background-color: #f8f8f8;
+    border: 1px dashed #ccc;
 }
