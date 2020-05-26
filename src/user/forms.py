@@ -1,12 +1,13 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Profile
 
 class UserCreationForm(forms.ModelForm):
-    username=forms.CharField(label='إسم المستخدم',max_length=30)
+    username=forms.CharField(label='إسم المستخدم',max_length=30,help_text='إسم المستخدم يجب أن لا يحتوي على مسافات')
     email=forms.EmailField(label='البريد الإلكتروني')
     first_name=forms.CharField(label='الإسم الأول')
     last_name=forms.CharField(label='إسم العائلة')
-    password1=forms.CharField(label='كلمة المرور',widget=forms.PasswordInput(),min_length=8)
+    password1=forms.CharField(label='كلمة المرور',widget=forms.PasswordInput(),min_length=8,help_text='كلمة المرور يجب أن لا تقل عن 8 رموز')
     password2=forms.CharField(label='تأكيد كلمة المرور',widget=forms.PasswordInput(),min_length=8)
     
     class Meta:
@@ -24,4 +25,24 @@ class UserCreationForm(forms.ModelForm):
         if User.objects.filter(username=cd['username']).exists():
             raise forms.ValidationError('يوجد مستخدم مسجل بهذا الإسم.')
         return cd['username']
+
+class LoginForm(forms.ModelForm):
+    username=forms.CharField(label='إسم المستخدم')
+    password=forms.CharField(label='كلمة المرور',widget=forms.PasswordInput())
+    class Meta:
+        model=User
+        fields=('username','password')
  
+
+class UserUpdateForm(forms.ModelForm):
+    first_name=forms.CharField(label='الإسم الأول')
+    last_name=forms.CharField(label='إسم العائلة')
+    email=forms.EmailField(label='البريد الإلكتروني')
+    class Meta:
+        model=User
+        fields=('first_name','last_name','email')
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields=('image',)
